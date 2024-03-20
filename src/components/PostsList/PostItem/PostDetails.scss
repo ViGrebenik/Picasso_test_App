@@ -1,0 +1,25 @@
+.containerPostItem {
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	background-color: #ccc;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	.buttonBlock {
+		display: flex;
+		width: 100%;
+		justify-content: end;
+		a {
+			align-self: flex-end;
+			padding: 5px 10px;
+			background-color: #007bff;
+			color: white;
+			text-decoration: none;
+			border-radius: 3px;
+		}
+		a:hover {
+			background-color: #0056b3;
+		}
+	}
+}
