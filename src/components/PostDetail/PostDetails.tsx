@@ -17,7 +17,7 @@ const PostDetails: React.FC = () => {
 
 	return (
 		<div className='containerPostDetailsItem'>
-			<div>№ {post.id}</div>
+			<div>№ {post?.id}</div>
 			<div>{post?.title}</div>
 			<div>{post?.body}</div>
 			<div className='buttonBlock'>
