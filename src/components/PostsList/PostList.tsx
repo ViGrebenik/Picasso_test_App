@@ -1,13 +1,13 @@
 import { FC, useEffect, useState } from 'react'
 import { useFetchAllPostsQuery } from '../../api/postApi'
 import PostItem from './PostItem/PostItem'
-import './PostsList.scss'
+import styles from './PostsList.module.scss'
 
 const PostList: FC = () => {
 	const [currentPostStart, setCurrentPostStart] = useState(0)
 	const { data: posts, isLoading } = useFetchAllPostsQuery({
 		limit: 7,
-		start: currentPostStart
+		start: currentPostStart,
 	})
 	const [isMyFetching, setIsFetchingDown] = useState(false)
 	const [isMyFetchingUp, setIsMyFetchingUp] = useState(false)
@@ -53,11 +53,11 @@ const PostList: FC = () => {
 		}
 	}
 	return (
-		<div className='postsList'>
-			<div className='headerTitle'>
+		<div className={styles.postsList}>
+			<div className={styles.headerTitle}>
 				<h1>Picasso App</h1>
 			</div>
-			{isLoading && <div className='loadingBlock'>Loading...</div>}
+			{isLoading && <div className={styles.loadingBlock}>Loading...</div>}
 			{posts &&
 				posts.map(post => (
 					<div key={post.id}>
