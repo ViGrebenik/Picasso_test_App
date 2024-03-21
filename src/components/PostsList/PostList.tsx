@@ -11,7 +11,11 @@ const PostList: FC = () => {
 	})
 	const [isMyFetching, setIsFetchingDown] = useState(false)
 	const [isMyFetchingUp, setIsMyFetchingUp] = useState(false)
+	const [isVisible, setIsVisible] = useState(false)
 
+	useEffect(() => {
+		setIsVisible(isLoading)
+	}, [isLoading])
 	useEffect(() => {
 		if (isMyFetching) {
 			setCurrentPostStart(prev => {
@@ -35,14 +39,14 @@ const PostList: FC = () => {
 		}
 	}, [])
 	const scrollHandler = (e: any): void => {
-		if (e.target.documentElement.scrollTop < 200) {
+		if (e.target.documentElement.scrollTop < 150) {
 			setIsMyFetchingUp(true)
 		}
 		if (
 			e.target.documentElement.scrollHeight -
 				e.target.documentElement.scrollTop -
 				window.innerHeight <
-			50
+			100
 		) {
 			setIsFetchingDown(true)
 			window.scrollTo(
@@ -52,6 +56,7 @@ const PostList: FC = () => {
 			)
 		}
 	}
+
 	return (
 		<div className={styles.postsList}>
 			<div className={styles.headerTitle}>
@@ -60,7 +65,10 @@ const PostList: FC = () => {
 			{isLoading && <div className={styles.loadingBlock}>Loading...</div>}
 			{posts &&
 				posts.map(post => (
-					<div key={post.id}>
+					<div
+						key={post.id}
+						className={`${styles.postItem} ${!isVisible ? styles.visible : ''}`}
+					>
 						<PostItem post={post} />
 					</div>
 				))}
