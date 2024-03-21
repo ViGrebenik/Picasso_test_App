@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { IPost } from '../../../types/types'
-import './PostDetails.scss'
+import styles from './PostDetails.module.scss'
 
 interface PostItemProps {
 	post: IPost
@@ -8,7 +8,7 @@ interface PostItemProps {
 
 const PostItem: React.FC<PostItemProps> = ({ post }) => {
 	return (
-		<div className='containerPostItem'>
+		<div className={styles.containerPostItem}>
 			<div>№ {post.id}</div>
 			<div>Title: {post.title}</div>
 			<div>
@@ -17,10 +17,8 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
 					? post.body.substring(0, 100) + '...'
 					: post.body}
 			</div>
-			<div className='buttonBlock'>
-				<Link to={`/post/${post.id}`} className='viewButton'>
-					View
-				</Link>
+			<div className={styles.buttonBlock}>
+				<Link to={`/post/${post.id}`}>View</Link>
 			</div>
 		</div>
 	)
